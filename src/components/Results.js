@@ -1,24 +1,17 @@
 import React from 'react'
+import Result from './Result'
 
 function Results(props){
 
     const results = []
 
-    for (let i = 0; i<props.results.length; i++){
-        results.push(
-        <li key={i}>{props.results[i].slug}</li>
-        )
+    for (let i = 0; i < props.results.length && i < 5; i++){
+        results.push(<Result key={i} {...props.results[i]}/>)
     }
-
-    console.log('called results')
-    console.log(props)
-
 
     return (
         <div className='results'>
-            <ul>
-                {results}
-            </ul>
+            {results}
         </div>
     )
 }

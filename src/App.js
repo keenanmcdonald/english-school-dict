@@ -1,9 +1,7 @@
 import React from 'react';
 import './App.css';
-import JishoApi from 'unofficial-jisho-api';
 import SearchBar from './components/SearchBar'
 import Results from './components/Results'
-const jisho = new JishoApi()
 
 class App extends React.Component {
 
@@ -12,23 +10,19 @@ class App extends React.Component {
     this.state = {
       results: []
     }
+
+    this.updateResults = this.updateResults.bind(this)
   }
   
-  search(searchTerm){
-    
-    jisho.searchForPhrase(searchTerm)
-      .then(response => {
-        console.log(response)
-        this.setState({results: response.data})
-      })
-  
+  updateResults(results){
+    this.setState({results})
   }
 
   
   render(){
     return (
       <div className="App">
-          <SearchBar search={(searchTerm) => this.search(searchTerm)}/>
+          <SearchBar updateResults={this.updateResults}/>
           <Results results={this.state.results}/>
       </div>
     )

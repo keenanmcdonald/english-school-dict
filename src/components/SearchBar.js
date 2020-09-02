@@ -1,4 +1,6 @@
 import React from 'react'
+import config from '../config'
+
 
 class SearchBar extends React.Component{
 
@@ -11,7 +13,25 @@ class SearchBar extends React.Component{
 
     updateSearchTerm(searchTerm){
         this.setState({searchTerm})
-        this.props.search(searchTerm)
+        this.search(searchTerm)
+    }
+
+    search(searchTerm){
+        if (searchTerm) {
+            fetch(config.API_ENDPOINT + 'dict/search/' + searchTerm)
+                .then(response => {
+                    return response.json()
+                    //this.props.updateResults(response)
+                })
+                .then(parsedResponse => {
+                    if (parsedResponse){
+                        this.props.updateResults(parsedResponse)
+                    }
+                })
+        }
+        else {
+            this.props.updateResults([])
+        }
     }
 
     render(){
