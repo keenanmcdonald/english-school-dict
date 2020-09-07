@@ -25,6 +25,7 @@ class SearchBar extends React.Component{
                 })
                 .then(parsedResponse => {
                     if (parsedResponse){
+                        console.log(parsedResponse)
                         this.props.updateResults(parsedResponse)
                     }
                 })

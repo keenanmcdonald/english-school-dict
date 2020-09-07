@@ -17,7 +17,6 @@ class App extends React.Component {
   updateResults(results){
     this.setState({results})
   }
-
   
   render(){
     return (
